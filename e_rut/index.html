@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rut</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container m-5">
+        <div class="card p-5 ">
+            <h1>Numero Verificador de rut</h1>
+            <p> Ingresa tu rut sin numero verificador.</p>
+            <input  class="m-5" type="text" placeholder="xxxxxxxxx" id="rut">
+            <button class="btn bg-warning" id="boton" onclick="separar()">Validar</button>
+        </div>
+    </div>
+    
+
+    <script>
+        
+        function separar(){
+
+            var rut = document.getElementById("rut").value;
+            console.log(rut);
+
+            var res = rut.split("-");
+            console.log(res[0]);
+
+            var reverse = res[0].split("");
+            reverse.reverse();
+            console.log(reverse);
+
+            var num = 2;
+            var total = 0;
+
+            for(var i=0; i<reverse.length; i++){
+                total = total + (reverse[i]*num);
+                num ++;
+                if(num == 8){
+                    num=2;
+                }
+            }
+            console.log(total);
+
+            var division = (total/11);
+            division=Number.parseInt(division);
+            console.log(division);
+
+            var multiplicacion = (division*11);
+            console.log(multiplicacion);
+
+            var totaltotal = (11-(total-multiplicacion));
+            console.log(totaltotal);
+
+            if(totaltotal==10){
+                totaltotal = "K";
+            }
+            console.log(totaltotal);
+
+            alert('tu numero verificador es: ' + totaltotal);
+            
+        }
+
+        
+    
+    </script>
+</body>
+</html>
